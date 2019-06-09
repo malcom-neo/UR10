@@ -1,0 +1,70 @@
+<launch>
+
+  <!-- By default, we are not in debug mode -->
+  <arg name="debug" default="false" />
+  <arg name="limited" default="false"/>
+  
+
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <include file="$(find ur10_rmf)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+    <arg name="limited" value="$(arg limited)"/>
+  </include>
+
+
+  <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
+  <include file="$(find ur10_rmf)/launch/move_group.launch">
+    <arg name="limited" value="$(arg limited)"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="allow_trajectory_execution" value="true"/>  
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="true"/>
+    <!-- <arg name="planner" value="stomp" /> -->
+  </include>
+
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <include file="$(find ur10_rmf)/launch/moveit_rviz.launch">
+    <!-- <param name="use_sim_time" value="true"/>  -->
+    <arg name="config" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+  <!-- include Lidar -->
+  <node pkg="tf" type="static_transform_publisher" name="lidar_to_base" args="0.15 0 0 0 0 0 /base_link /laser 100"/>
+
+
+  <!-- Ur10 Bring Up-->
+  <include file="$(find ur_modern_driver)/launch/ur10_bringup.launch">
+    <arg name="robot_ip" value="192.168.88.70"/>
+    <!-- Test Param tuning -->
+    <arg name="servoj_time" value="0.012"/>  
+    <!-- <arg name="servoj_lookahead_time" value="0.1"/> -->
+    <!-- <arg name="servoj_gain" value="300"/> -->
+  </include>
+
+  <!-- urg lidar bring up -->
+  <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
+    <param name="ip_address" value="192.168.88.35"/>
+    <param name="serial_baud" value="115200"/>
+    <param name="frame_id" value="laser"/>
+    <param name="calibrate_time" value="false"/>
+    <param name="publish_intensity" value="false"/>
+    <param name="publish_multiecho" value="false"/>
+    <param name="angle_min" value="-1.5707963"/>
+    <param name="angle_max" value="1.5707963"/>
+  </node>
+
+
+  <!-- Hokoyu Pose Estimator -->
+  <arg name="yaml-path" default="$(find object_pose_estimation)/config/config.yaml"/>
+  <node name="agv_pose_detector" pkg="object_pose_estimation" type="object_pose_estimation_ros" output="log" args="$(arg yaml-path)"/>
+
+
+
+  <!-- Remap follow_joint_trajectory if in simulaion-->
+  <arg name="sim" default="false" />    
+  <remap if="$(arg sim)" from="/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/>
+
+</launch>
+
+
