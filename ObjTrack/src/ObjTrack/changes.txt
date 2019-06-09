@@ -1,0 +1,7 @@
+chagned aruco_ros/  marker_publisher to publish tf for multiple marker, merge tf tree with ur10 tf tree
+
+objtf, mixed launch of camera with ur10
+
+ur10_rmf. changed arm_manipulation.py go_to_pose_goal to set_start_state_to_current_state() as group.plan require start state to plan.
+
+ObjTrack. used arm_manipulation code to use go_to_pose_goal after generating marker/box at location which is read from yaml file.
