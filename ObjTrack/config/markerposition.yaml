@@ -7,6 +7,6 @@ marker_position:
 
 loading_position: [-0.8,0,0.6,0,0,3]
 
-fork_length: 0.2 #in metres
+fork_length: 0.25 #in metres
 
 tray_height: 
