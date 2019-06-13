@@ -46,7 +46,6 @@
   <node pkg="tf" type="static_transform_publisher" name="lidar_to_base" args="0.15 0 0 0 0 0 /base_link /laser 100"/>
   
   <!-- launch aruco tracking -->
-
   <node name="eef_tracking" pkg="ObjTrack" type="eef_tracking.py" output = "screen">
   </node> 
 
