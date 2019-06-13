@@ -19,12 +19,12 @@ Changes: added broadcaster for tf and included in launch file.
 
 Problems: unable to run rqt_tf_tree
 
-** Launch for gazebo **
+**Launch for gazebo**
 ```
 roslaunch aruco_pose_estimation gazebo_recognition.launch
 ```
 
-** Launch for hardware **
+**Launch for hardware**
 
 ```
 roslaunch aruco_pose_estimation multi_markers.launch
@@ -32,12 +32,12 @@ roslaunch aruco_pose_estimation multi_markers.launch
 
 # ur_simulation
 
-** Getting markers model for gazebo **
+**Getting markers model for gazebo**
 1. Download [marker package](https://github.com/joselusl/aruco_gazebo)
 2. Move markers file into ~/home/.gazebo/models
 
 
-** Launch gazebo, ur10 and controller **
+**Launch gazebo, ur10 and controller**
 ```
 roslaunch ur_gazebo gazebo.launch 
 ```
