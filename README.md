@@ -5,6 +5,7 @@
 2. eef code to follow camera pose message
 3. merge launch file, currently linking here and there for no reason
 4. failsafe for collision with box
+5. Rotate of orientation from marker to eef
 
 
 
