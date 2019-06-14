@@ -30,16 +30,26 @@ roslaunch aruco_pose_estimation gazebo_recognition.launch
 roslaunch aruco_pose_estimation multi_markers.launch
 ```
 
-# ur_simulation
+# ur10 gazebo simulation
+**[Installing gazebo_ros](http://gazebosim.org/tutorials?tut=ros_installing)**
 
 **Getting markers model for gazebo**
 1. Download [marker package](https://github.com/joselusl/aruco_gazebo)
 2. Move markers file into ~/home/.gazebo/models
 
 
-**Launch gazebo, ur10 and controller**
+**Downloading UR10 gazebo package**
+'''
+git clone -b kinetic-devel https://github.com/ros-industrial/universal_robot
+sudo apt-get install ros-melodic-joint-trajectory-controller
+'''
+Unsure if that is the missing controller. If error appear while running, look for missing controller
+
+**running UR10 gazebo**
+Download ur10_simulation
+
 ```
-roslaunch ur_gazebo gazebo.launch 
+roslaunch ur10_simulation gazebo.launch 
 ```
 
-run movement script to test on gazebo
+run your own movement script on another terminal to test on gazebo
