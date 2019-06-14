@@ -39,10 +39,12 @@ roslaunch aruco_pose_estimation multi_markers.launch
 
 
 **Downloading UR10 gazebo package**
-'''
+
+```
 git clone -b kinetic-devel https://github.com/ros-industrial/universal_robot
+
 sudo apt-get install ros-melodic-joint-trajectory-controller
-'''
+```
 Unsure if that is the missing controller. If error appear while running, look for missing controller
 
 **running UR10 gazebo**
