@@ -31,7 +31,7 @@ roslaunch aruco_pose_estimation multi_markers.launch
 ```
 
 # ur10 gazebo simulation
-**[Installing gazebo_ros](http://gazebosim.org/tutorials?tut=ros_installing)**
+**[Install gazebo_ros](http://gazebosim.org/tutorials?tut=ros_installing)**
 
 **Getting markers model for gazebo**
 1. Download [marker package](https://github.com/joselusl/aruco_gazebo)
