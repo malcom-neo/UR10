@@ -4,12 +4,12 @@ camera_name: usb_cam
 camera_matrix:
   rows: 3
   cols: 3
-  data: [ 565.21049564903910, 0, 320, 0,  565.21049564903910, 240, 0, 0, 1]
+  data: [302.48, 0, 320, 0, 302.48, 240, 0, 0, 1]
 distortion_model: plumb_bob
 distortion_coefficients:
-  rows: 5
-  cols: 1
-  data: [0.058798051839744375, -0.66716699197670726, 0, 0, 0.70671672017361808]
+  rows: 1
+  cols: 5
+  data: [0.033, -0.07875, 0, 0, 0.022]
 rectification_matrix:
   rows: 3
   cols: 3

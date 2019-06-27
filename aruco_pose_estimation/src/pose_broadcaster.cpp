@@ -6,16 +6,8 @@
 
 tf::Quaternion pitching_up(tf::Quaternion quat)
 {
-  tf::Matrix3x3 m(quat);
-  double roll, pitch, yaw;
-  m.getRPY(roll, pitch, yaw);
-  std::cout<<roll<< " "<<pitch<<" "<< yaw<< " ";
-
-  pitch -=-1.57;
-
-  quat.setRPY(roll, pitch, yaw);
-
-  std::cout<<roll<< " "<<pitch<<" "<< yaw<< std::endl;
+  quat = quat * tf::Quaternion(  0.7071068, 0, 0, 0.7071068);
+  quat = quat * tf::Quaternion(   0, 0.7071068, 0, 0.7071068);
   return quat;
 }
 
@@ -31,14 +23,16 @@ void poseCallback(const aruco_msgs::MarkerArrayConstPtr& msg){
     pose = msg->markers[i].pose.pose;
 
     tf::Transform transform;
-    transform.setOrigin(tf::Vector3(pose.position.z,pose.position.y,pose.position.y));
+    transform.setOrigin(tf::Vector3(pose.position.x,pose.position.y,pose.position.z));
+
+    tf::Quaternion quat;
 
 
     //aruco orientation require rotation as axis is in wrong direction
     tf::Quaternion before_rotation(pose.orientation.x,pose.orientation.y,pose.orientation.z,pose.orientation.w);
     tf::Quaternion after_rotation;
     after_rotation = pitching_up(before_rotation);
-    transform.setRotation(before_rotation);
+    transform.setRotation(after_rotation);
 
     br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "camera", markername));
     
