@@ -33,6 +33,12 @@ roslaunch aruco_pose_estimation multi_markers.launch
 1. Download [marker package](https://github.com/joselusl/aruco_gazebo)
 2. Move markers file into ~/home/.gazebo/models
 
+**Dependency**
+1. [Universal robotics](https://github.com/ros-industrial/universal_robot). Build from scratch
+2. Moveit!.
+```
+sudo apt-get install ros-melodic-moveit
+```
 
 **Downloading UR10 gazebo package**
 
