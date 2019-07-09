@@ -26,7 +26,7 @@
     
 
 
-    <arg name="markerId"        default="31"/>
+    <arg name="markerId"        default="1"/>
     <arg name="corner_refinement" default="LINES" /> <!-- NONE, HARRIS, LINES, SUBPIX -->
 
     <node pkg="aruco_ros" type="single" name="aruco_single" output="screen">
