@@ -1,9 +1,7 @@
 # UR10
 
 # To-do
-1. add flags to stop movement in eef_tracking when movement fail 
-2. eef code to follow camera pose message
-3. failsafe for collision with box
+1. add calibrate for zed camera
 
 # aruco_pose_estimate
 Dependant on aruco_ros package. Will be nice to have some filter
@@ -13,6 +11,13 @@ Markers pose and list of markers will be posted to /markers and /markerslist res
 Changes: added broadcaster for tf and included in launch file.
 
 Problems: unable to run rqt_tf_tree
+
+# Zed camera on cpu
+[Github](https://github.com/willdzeng/zed_cpu_ros)
+
+# fiducial
+[Github](https://github.com/UbiquityRobotics/fiducials)
+
 
 
 **Launch for gazebo**
