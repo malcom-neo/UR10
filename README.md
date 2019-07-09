@@ -3,21 +3,17 @@
 # To-do
 1. add flags to stop movement in eef_tracking when movement fail 
 2. eef code to follow camera pose message
-3. merge launch file, currently linking here and there for no reason
-4. failsafe for collision with box
-5. Rotate of orientation from marker to eef
-
-
-
+3. failsafe for collision with box
 
 # aruco_pose_estimate
-Dependant on aruco_ros package.
+Dependant on aruco_ros package. Will be nice to have some filter
 
 Markers pose and list of markers will be posted to /markers and /markerslist respectively
 
 Changes: added broadcaster for tf and included in launch file.
 
 Problems: unable to run rqt_tf_tree
+
 
 **Launch for gazebo**
 ```
@@ -37,11 +33,14 @@ roslaunch aruco_pose_estimation multi_markers.launch
 1. Download [marker package](https://github.com/joselusl/aruco_gazebo)
 2. Move markers file into ~/home/.gazebo/models
 
-
-**Downloading UR10 gazebo package**
-
+**Dependency**
+1. [Universal robotics](https://github.com/ros-industrial/universal_robot). Build from scratch
+2. Moveit!.
 ```
-git clone -b kinetic-devel https://github.com/ros-industrial/universal_robot
+sudo apt-get install ros-melodic-moveit
+```
+3. joint-controller 
+```
 
 sudo apt-get install ros-melodic-joint-trajectory-controller
 ```
