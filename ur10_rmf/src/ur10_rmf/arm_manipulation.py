@@ -131,7 +131,7 @@ class ArmManipulation(object):
     
     #self.group.set_goal_tolerance(1 )
     # create model to prevent collision
-    self.addModelScene()
+    #self.addModelScene()
     self.scene = scene
 
     ## Printing Basic Information
@@ -167,11 +167,11 @@ class ArmManipulation(object):
     box.pose.position.z = -0.08
     self.scene.add_box("base_box", box, size=(0.7, 0.7, 0.1))
 
-    box = geometry_msgs.msg.PoseStamped()
-    box.header.frame_id = "base_link"
-    box.pose.orientation.w = 1.0
-    box.pose.position.z = 1.5
-    self.scene.add_box("ceiling", box, size=(1, 1, 0.1))
+    # box = geometry_msgs.msg.PoseStamped()
+    # box.header.frame_id = "base_link"
+    # box.pose.orientation.w = 1.0
+    # box.pose.position.z = 1.5
+    # self.scene.add_box("ceiling", box, size=(1, 1, 0.1))
 
     box = geometry_msgs.msg.PoseStamped()
     box.header.frame_id = "base_link"

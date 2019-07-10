@@ -337,7 +337,7 @@
    <joint name="fork_left_joint" type="fixed">
       <parent link="mounting_plate" />
       <child link = "fork_left" />
-      <origin xyz="0.131 -0.1 0.0" rpy="0.0 0.0 0.0" />
+      <origin xyz="0.16 -0.1 0.0" rpy="0.0 0.0 0.0" />
     </joint>
 
     <link name="fork_left">
@@ -346,13 +346,13 @@
           <color rgba="0.7 0.7 0.7 1.0"/>
         </material>
   <geometry>
-          <box size="0.25 0.01 0.01"/>
+          <box size="0.3 0.01 0.01"/>
         </geometry>
       </visual>
   
       <collision>
         <geometry>
-          <box size="0.25 0.01 0.01"/>
+          <box size="0.3 0.01 0.01"/>
         </geometry>
       </collision>
     </link>
@@ -360,7 +360,7 @@
    <joint name="fork_right_joint" type="fixed">
       <parent link="mounting_plate" />
       <child link = "fork_right" />
-      <origin xyz="0.131 0.1 0.0" rpy="0.0 0.0 0.0" />
+      <origin xyz="0.16 0.1 0.0" rpy="0.0 0.0 0.0" />
     </joint>
 
     <link name="fork_right">
@@ -369,13 +369,13 @@
           <color rgba="0.7 0.7 0.7 1.0"/>
         </material>
   <geometry>
-          <box size="0.25 0.01 0.01"/>
+          <box size="0.3 0.01 0.01"/>
         </geometry>
       </visual>
   
       <collision>
         <geometry>
-          <box size="0.25 0.01 0.01"/>
+          <box size="0.3 0.01 0.01"/>
         </geometry>
       </collision>
     </link>    
@@ -429,10 +429,10 @@
     <sensor type="camera" name="camera1">
       <update_rate>30.0</update_rate>
       <camera name="camera_head">
-        <horizontal_fov>2.094</horizontal_fov>
+        <horizontal_fov>1.57</horizontal_fov>
         <image>
-          <width>640</width>
-          <height>480</height>
+          <width>3840</width>
+          <height>1080</height>
           <!--<format>R8G8B8</format> -->
           <format>R8G8B8</format>
         </image>
@@ -451,7 +451,7 @@
       </camera>
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
-        <updateRate>60</updateRate>
+        <updateRate>30</updateRate>
         <cameraName></cameraName>
         <imageTopicName>/image</imageTopicName>
         <cameraInfoTopicName>/camera_info</cameraInfoTopicName>

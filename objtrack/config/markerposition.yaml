@@ -1,0 +1,12 @@
+marker_position:
+  {
+   1:[0.8,0.5,0.6,0,0,0],
+   2:[0.8,-0.5,0.6,0,0,0],
+   
+  }
+
+loading_position: [-0.8,0,0.6,0,0,3]
+
+fork_length: 0.25 #in metres
+
+tray_height: 
