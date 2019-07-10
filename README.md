@@ -12,12 +12,6 @@ Changes: added broadcaster for tf and included in launch file.
 
 Problems: unable to run rqt_tf_tree
 
-# Moveit and moveit config
-```
-sudo apt-get install ros-kinetic-moveit
-sudo apt-get install ros-kinetic-ur10-moveit-config
-```
-
 # Zed camera on cpu
 [Github](https://github.com/willdzeng/zed_cpu_ros)
 
