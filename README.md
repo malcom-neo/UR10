@@ -4,7 +4,7 @@
 1. add calibrate for zed camera
 
 # aruco_pose_estimate
-Dependant on aruco_ros package. Will be nice to have some filter
+Dependant on [aruco_ros](https://github.com/pal-robotics/aruco_ros) package. Will be nice to have some filter
 
 Markers pose and list of markers will be posted to /markers and /markerslist respectively
 
