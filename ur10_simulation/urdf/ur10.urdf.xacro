@@ -308,7 +308,7 @@
         <geometry>
           <mesh filename="package://ur10_simulation/meshes/visual/end_effector.STL" scale="0.001 0.001 0.001"/>
         </geometry>
-        <origin xyz="-0.3 0.0 0.0" rpy="${-pi/2} 0.0 ${pi/2}" />
+        <origin xyz="0.3 -0.125 0.1" rpy="${-pi/2} 0.0 ${pi/2}" />
         <material name="LightGrey">
           <color rgba="0.7 0.7 0.7 1.0"/>
         </material>
