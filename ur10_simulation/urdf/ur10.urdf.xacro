@@ -1,11 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 
-<!--
-  Author: Kelsey Hawkins
-  Contributers: Jimmy Da Silva, Ajit Krisshna N L, Muhammad Asif Rana
--->
-
   <xacro:include filename="$(find ur_description)/urdf/ur.transmission.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/ur.gazebo.xacro" />
 
@@ -301,124 +296,42 @@
       </collision>
     </link>
 
-    <xacro:ur_arm_transmission prefix="${prefix}" hw_interface="${transmission_hw_interface}" />
-    <xacro:ur_arm_gazebo prefix="${prefix}" />
-
-
-<!--eef mounting plate-->  
-    <joint name="mounting_plate_joint" type="fixed">
+<!--end effector-->
+    <joint name="${prefix}end_effector_joint" type="fixed">
       <parent link="${prefix}ee_link" />
-      <child link = "mounting_plate" />
-      <origin xyz="0.005 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <child link = "${prefix}end_effector_link" />
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     </joint>
 
-    <link name="mounting_plate">
+    <link name="${prefix}end_effector_link">
       <visual>
-        <material name="LightGrey">
-          <color rgba="0.752 0.752 0.752 1.0"/>
-        </material>
-  <geometry>
-          <box size="0.01 0.2 0.075"/>
-        </geometry>
-      </visual>
-  
-      <collision>
         <geometry>
-          <box size="0.01 0.2 0.075"/>
+          <mesh filename="package://ur10_simulation/meshes/visual/end_effector.STL"/>
         </geometry>
-      </collision>
-    </link>
-
-
-
-
-
-<!--Forks -->
-   <joint name="fork_left_joint" type="fixed">
-      <parent link="mounting_plate" />
-      <child link = "fork_left" />
-      <origin xyz="0.16 -0.1 0.0" rpy="0.0 0.0 0.0" />
-    </joint>
-
-    <link name="fork_left">
-      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="${-pi/2} 0.0 ${pi/2}" />
         <material name="LightGrey">
           <color rgba="0.7 0.7 0.7 1.0"/>
         </material>
-  <geometry>
-          <box size="0.3 0.01 0.01"/>
-        </geometry>
       </visual>
-  
       <collision>
         <geometry>
-          <box size="0.3 0.01 0.01"/>
+          <mesh filename="package://ur10_simulation/meshes/collision/end_effector.STL"/>
         </geometry>
+	<origin xyz="0.0 0.0 0.0" rpy="${-pi/2} 0.0 ${pi/2}" />
       </collision>
+      <xacro:cylinder_inertial radius="0.075" length="0.12" mass="${wrist_3_mass}">
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      </xacro:cylinder_inertial>
     </link>
 
-   <joint name="fork_right_joint" type="fixed">
-      <parent link="mounting_plate" />
-      <child link = "fork_right" />
-      <origin xyz="0.16 0.1 0.0" rpy="0.0 0.0 0.0" />
-    </joint>
+<!--end of end effector-->
 
-    <link name="fork_right">
-      <visual>
-        <material name="LightGrey">
-          <color rgba="0.7 0.7 0.7 1.0"/>
-        </material>
-  <geometry>
-          <box size="0.3 0.01 0.01"/>
-        </geometry>
-      </visual>
-  
-      <collision>
-        <geometry>
-          <box size="0.3 0.01 0.01"/>
-        </geometry>
-      </collision>
-    </link>    
-
-
-    <!-- Camera -->
-`
-   <joint name="camera_joint" type="fixed">
-      <parent link="mounting_plate" />
-      <child link = "camera" />
-      <origin xyz=" 0.00 0.0 0.065" rpy="-1.57 0.0 -1.57" />
-   </joint>
-
-  <link name="camera">
-    <!--<collision>
-      <origin xyz="0 0 0" rpy="0 0 1.57"/>
-      <geometry>
-    <box size=" 0.05 0.15 0.05 "/>
-      </geometry>
-    </collision> -->
-
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-    <box size=" 0.01 0.01 0.01 "/>
-<!--0.05 0.15 0.05 -->
-      </geometry>
-      <material name="red">
-  <color rgba=" 1 0 0 1" />
-      </material>
-    </visual>
-
-    <inertial>
-      <mass value="0.082" />
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
-    </inertial>
-  </link>
+<!--camera link-->
 
 <joint name="camera_optical_joint" type="fixed">
     <!-- satisfy both gazebo convention and aruco pkg convetion. looking from x axis and z axis respectively. -->
-    <origin xyz=" 0.0 0.0 0.065" rpy="0 0.0 0" />>
-    <parent link="mounting_plate"/>
+    <origin xyz=" 0.055 0.06 0.0825" rpy="0 0.0 0" />>
+    <parent link="end_effector_link"/>
     <child link="camera_link_optical"/>
   </joint>
 
@@ -466,10 +379,7 @@
     </sensor>
   </gazebo>
 
-
-<!--end of camera-->
-
-
+<!--end of camera link-->
     <!-- ROS base_link to UR 'Base' Coordinates transform -->
     <link name="${prefix}base"/>
     <joint name="${prefix}base_link-base_fixed_joint" type="fixed">
@@ -489,6 +399,11 @@
       <parent link="${prefix}wrist_3_link"/>
       <child link="${prefix}tool0"/>
     </joint>
+
+
+    <xacro:ur_arm_transmission prefix="${prefix}" hw_interface="${transmission_hw_interface}" />
+    <xacro:ur_arm_gazebo prefix="${prefix}" />
+
 
   </xacro:macro>
 </robot>
