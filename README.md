@@ -35,7 +35,7 @@ roslaunch aruco_pose_estimation multi_markers.launch
 **[Install gazebo_ros](http://gazebosim.org/tutorials?tut=ros_installing)**
 
 **Getting markers model for gazebo**
-1. Download [marker package](https://github.com/joselusl/aruco_gazebo)
+1. Go to the marker_image folder in fiducials_tf
 2. Move markers file into ~/home/.gazebo/models
 
 **Dependency**
